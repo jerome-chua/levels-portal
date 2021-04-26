@@ -193,7 +193,7 @@ module.exports = {
     await queryInterface.dropTable('jobs_applied');
     await queryInterface.dropTable('skills');
     await queryInterface.dropTable('candidates');
-    await queryInterface.dropTable('companies');
     await queryInterface.dropTable('jobs');
+    await queryInterface.dropTable('companies');
   },
 };

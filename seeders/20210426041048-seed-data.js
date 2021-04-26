@@ -98,11 +98,11 @@ module.exports = {
 
     const jobsList = [];
 
-    for (let i = 0; i < jobCompanyIds.length - 1; i += 1) {
+    for (let i = 0; i < jobCompanyIds.length; i += 1) {
       const randomInt = Math.floor(Math.random() * 9);
 
       jobsList.push({
-        companyId: jobCompanyIds[i],
+        company_id: jobCompanyIds[i],
         title: jobTitle[i],
         link: 'https://www.facebook.com/careers/jobs/',
         description: faker.name.jobDescriptor(),
@@ -114,8 +114,6 @@ module.exports = {
         updated_at: new Date(),
       });
     }
-
-    console.log('SHADOW & BONE jobs', jobsList);
 
     const skillNames = [
       'Software Engineering', 'JavaScript', 'React', 'React Native', 'HTML', 'CSS', 'Bootstrap', 'Tailwind', 'TypeScript', 'Python',
@@ -1050,7 +1048,7 @@ module.exports = {
       },
       {
         job_id: 20,
-        skill_id: 70,
+        skill_id: 60,
         created_at: new Date(),
         updated_at: new Date(),
       },
@@ -1110,7 +1108,7 @@ module.exports = {
       },
       {
         job_id: 21,
-        skill_id: 64,
+        skill_id: 54,
         created_at: new Date(),
         updated_at: new Date(),
       },
@@ -2983,13 +2981,11 @@ module.exports = {
     ];
 
     try {
+      const companiesResult = await queryInterface.bulkInsert('companies', companiesList);
       const skillsResult = await queryInterface.bulkInsert('skills', skillsList);
       const candidatesResult = await queryInterface.bulkInsert('candidates', candidatesList);
       const jobsResults = await queryInterface.bulkInsert('jobs', jobsList);
-      const companiesResult = await queryInterface.bulkInsert('companies', companiesList);
       const jobsSkillsResults = await queryInterface.bulkInsert('jobs_skills', jobsSkillsList);
-
-      console.log(companiesResult);
     } catch (error) {
       console.log('ERROR: ----', error);
     }
