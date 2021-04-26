@@ -9,6 +9,9 @@ export default function candidateModel(sequelize, DataTypes) {
     name: {
       type: DataTypes.TEXT,
     },
+    email: {
+      type: DataTypes.TEXT,
+    },
     description: {
       type: DataTypes.TEXT,
     },

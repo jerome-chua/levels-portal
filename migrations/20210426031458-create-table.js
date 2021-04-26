@@ -10,6 +10,9 @@ module.exports = {
       name: {
         type: Sequelize.STRING,
       },
+      email: {
+        type: Sequelize.TEXT,
+      },
       description: {
         type: Sequelize.TEXT,
       },
@@ -158,9 +161,6 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
-      },
-      name: {
-        type: Sequelize.TEXT,
       },
       skill_id: {
         references: {

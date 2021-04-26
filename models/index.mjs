@@ -45,8 +45,8 @@ db.Skill.belongsToMany(db.Job, { through: 'jobs_skills' });
 db.Job.belongsToMany(db.Candidate, { through: 'jobs_applied' });
 db.Candidate.belongsToMany(db.Job, { through: 'jobs_applied' });
 
-db.Job.belongsTo(db.Company);
 db.Company.hasMany(db.Job);
+db.Job.belongsTo(db.Company);
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
