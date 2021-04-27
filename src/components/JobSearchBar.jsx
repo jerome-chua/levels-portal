@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 
-export default function JobSearchBar() {
+export default function JobSearchBar({ setJobTitle }) {
   const [jobText, setJobText] = useState('');
 
   const handleChange = (event) => {
     const userInput = event.target.value;
     setJobText(userInput);
-    console.log(userInput);
+    setJobTitle(userInput);
   };
 
   return (
@@ -17,7 +18,7 @@ export default function JobSearchBar() {
         placeholder="Search Job by Title"
         value={jobText}
         onClick={() => {
-          console.log('Input clicked');
+          console.log('Job Search input clicked');
         }}
         onChange={handleChange}
       />
