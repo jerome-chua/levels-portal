@@ -6,15 +6,17 @@ import SearchForm from './components/SearchForm.jsx';
 import JobCards from './components/JobCards.jsx';
 
 export default function App() {
+  console.log('--------- App called! ---------');
   const [jobList, setJobList] = useState([]);
 
+  console.log('jobList: ------\n', jobList);
   return (
     <div>
       <Navbar />
       <div className="container-fluid mt-5">
         <div className="row">
           <div className="col">
-            <SearchForm />
+            <SearchForm setJobList={(jobs) => setJobList(jobs)} />
           </div>
         </div>
         <div className="row my-4">
@@ -24,7 +26,9 @@ export default function App() {
         </div>
         <div className="row mx-2">
           <div className="col-5">
-            <JobCards onClick={() => console.log('jobcards clicked')} />
+            {jobList.map((job, index) => (
+              <JobCards key={[job, index].join('')} title={job.title} years={job.yearsRequired} description={job.description} min={job.minSalary} max={job.maxSalary} />
+            ))}
           </div>
         </div>
       </div>
