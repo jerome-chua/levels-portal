@@ -3,15 +3,28 @@ import axios from 'axios';
 
 import Navbar from './components/Navbar.jsx';
 import SearchForm from './components/SearchForm.jsx';
+import JobCards from './components/JobCards.jsx';
 
 export default function App() {
+  const [jobList, setJobList] = useState([]);
+
   return (
     <div>
       <Navbar />
-      <div className="container mt-5">
+      <div className="container-fluid mt-5">
         <div className="row">
           <div className="col">
             <SearchForm />
+          </div>
+        </div>
+        <div className="row my-4">
+          <div className="col d-flex justify-content-center">
+            <button className="btn btn-secondary px-4 rounded-pill" type="button">Skills</button>
+          </div>
+        </div>
+        <div className="row mx-2">
+          <div className="col-5">
+            <JobCards onClick={() => console.log('jobcards clicked')} />
           </div>
         </div>
       </div>

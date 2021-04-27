@@ -5,7 +5,6 @@ const { Op } = pkg;
 export default function initJobsController(db) {
   const getJobs = async (req, res) => {
     const { jobtitle } = req.params;
-    console.log('jobTitle:', jobtitle);
 
     try {
       const jobs = await db.Job.findAll({
@@ -16,7 +15,7 @@ export default function initJobsController(db) {
         },
       });
 
-      if (!jobs) {
+      if (jobs.length === 0) {
         res.send(`No jobs found for: ${jobtitle}`);
       }
       res.send(jobs);

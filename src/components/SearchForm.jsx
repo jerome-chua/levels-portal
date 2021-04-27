@@ -17,7 +17,7 @@ export default function SearchForm() {
   };
 
   return (
-    <div className="cotainer">
+    <div className="container">
       <div className="row">
         <div className="col-10 col-md-6 my-1">
           <JobSearchBar setJobTitle={(title) => setJobTitle(title)} />
