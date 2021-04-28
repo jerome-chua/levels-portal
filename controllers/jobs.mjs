@@ -10,14 +10,11 @@ export default function initJobsController(db) {
       const jobs = await db.Job.findAll({
         where: {
           title: {
-            [Op.eq]: jobtitle,
+            [Op.regexp]: jobtitle,
           },
         },
       });
 
-      if (jobs.length === 0) {
-        res.send(`No jobs found for: ${jobtitle}`);
-      }
       res.send(jobs);
     } catch (err) {
       console.error('Error getting jobs: ----\n', err);

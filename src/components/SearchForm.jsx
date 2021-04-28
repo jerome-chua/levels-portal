@@ -5,7 +5,7 @@ import JobSearchBar from './JobSearchBar.jsx';
 import SalarySearchBar from './SalarySearchBar.jsx';
 import SearchIcon from './SearchIcon.jsx';
 
-export default function SearchForm({ setJobList }) {
+export default function SearchForm({ setJobSearched, setJobList }) {
   const [jobTitle, setJobTitle] = useState('');
 
   const getJobs = () => {
@@ -14,8 +14,11 @@ export default function SearchForm({ setJobList }) {
         console.log('Data coming back from getJobs controller:\n', res.data);
 
         setJobList(res.data);
+        setJobSearched(true);
       })
-      .catch((err) => console.log('err with axios.get("/getjobs"):\n', err));
+      .catch((err) => {
+        console.log('err with axios.get("/getjobs"):\n', err);
+      });
   };
 
   return (

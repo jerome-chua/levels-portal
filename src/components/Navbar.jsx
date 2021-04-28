@@ -1,8 +1,6 @@
 import React from 'react';
 
 export default function Navbar() {
-  console.log('Navbar called!');
-
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light navbar-bg justify-content-between">
