@@ -7,6 +7,7 @@ import ErrorBoundary from './components/ErrorBoundary.jsx';
 import SearchForm from './components/SearchForm.jsx';
 import JobCards from './components/JobCards.jsx';
 import JobAlert from './components/JobAlert.jsx';
+import FullJobDescription from './components/FullJobDescription.jsx';
 
 export default function App() {
   console.log('--------- App rendered! ---------');
@@ -35,13 +36,7 @@ export default function App() {
             )) : <JobAlert /> : <div />}
           </div>
           <div className="col-7">
-            <div className="card border-secondary mb-3">
-              <div className="card-header">Header</div>
-              <div className="card-body text-secondary">
-                <h5 className="card-title">Secondary card title</h5>
-                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </div>
-            </div>
+            {jobList.length ? <FullJobDescription /> : <div />}
           </div>
         </div>
       </div>
