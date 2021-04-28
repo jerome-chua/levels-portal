@@ -14,6 +14,7 @@ export default function App() {
   const [jobList, setJobList] = useState([]);
   const [jobSearched, setJobSearched] = useState(false);
   const now = moment();
+  const firstJob = [jobList[0]];
 
   return (
     <div>
@@ -36,7 +37,9 @@ export default function App() {
             )) : <JobAlert /> : <div />}
           </div>
           <div className="col-7">
-            {jobList.length ? <FullJobDescription /> : <div />}
+            {jobList.length
+              ? firstJob.map((job) => (<FullJobDescription title={job.title} />))
+              : <div />}
           </div>
         </div>
       </div>
