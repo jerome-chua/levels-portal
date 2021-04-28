@@ -14,7 +14,7 @@ export default function App() {
   const [jobList, setJobList] = useState([]);
   const [jobSearched, setJobSearched] = useState(false);
   const now = moment();
-  const firstJob = [jobList[0]];
+  const firstJobListing = [jobList[0]];
 
   return (
     <div>
@@ -33,12 +33,14 @@ export default function App() {
         <div className="row mx-2">
           <div className="col-5">
             {jobSearched ? jobList.length ? jobList.map((job, index) => (
-              <JobCards key={[job, index].join('')} title={job.title} years={job.yearsRequired} description={job.description} min={job.minSalary} max={job.maxSalary} createdAt={now.diff(new Date(job.createdAt.split(' ')[0]), 'days')} />
+              <JobCards key={[job, index].join('')} title={job.title} companyName={job.company.name} years={job.yearsRequired} description={job.description} min={job.minSalary} max={job.maxSalary} createdAt={now.diff(new Date(job.createdAt.split(' ')[0]), 'days')} />
             )) : <JobAlert /> : <div />}
           </div>
           <div className="col-7">
             {jobList.length
-              ? firstJob.map((job) => (<FullJobDescription title={job.title} />))
+              ? firstJobListing.map((job) => (
+                <FullJobDescription title={job.title} companyName={job.company.name} years={job.yearsRequired} description={job.description} min={job.minSalary} max={job.maxSalary} createdAt={now.diff(new Date(job.createdAt.split(' ')[0]), 'days')} />
+              ))
               : <div />}
           </div>
         </div>
