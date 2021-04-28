@@ -125,7 +125,7 @@ module.exports = {
 
     const skillsList = [];
 
-    for (let i = 0; i < skillNames.length - 1; i += 1) {
+    for (let i = 0; i < skillNames.length; i += 1) {
       skillsList.push({
         name: skillNames[i],
         created_at: new Date(),
@@ -2982,8 +2982,8 @@ module.exports = {
 
     try {
       const companiesResult = await queryInterface.bulkInsert('companies', companiesList);
-      const skillsResult = await queryInterface.bulkInsert('skills', skillsList);
       const candidatesResult = await queryInterface.bulkInsert('candidates', candidatesList);
+      const skillsResult = await queryInterface.bulkInsert('skills', skillsList);
       const jobsResults = await queryInterface.bulkInsert('jobs', jobsList);
       const jobsSkillsResults = await queryInterface.bulkInsert('jobs_skills', jobsSkillsList);
     } catch (error) {
