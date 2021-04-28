@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import moment from 'moment';
 import axios from 'axios';
 
 import Navbar from './components/Navbar.jsx';
 import SearchForm from './components/SearchForm.jsx';
 import JobCards from './components/JobCards.jsx';
+
+const now = moment();
 
 export default function App() {
   console.log('--------- App called! ---------');
@@ -27,7 +30,7 @@ export default function App() {
         <div className="row mx-2">
           <div className="col-5">
             {jobList.map((job, index) => (
-              <JobCards key={[job, index].join('')} title={job.title} years={job.yearsRequired} description={job.description} min={job.minSalary} max={job.maxSalary} />
+              <JobCards key={[job, index].join('')} title={job.title} years={job.yearsRequired} description={job.description} min={job.minSalary} max={job.maxSalary} createdAt={now.diff(new Date(job.createdAt.split(' ')[0]), 'days')} />
             ))}
           </div>
         </div>

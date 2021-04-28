@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function JobCards({
-  title, years, description, min, max,
+  title, years, description, min, max, createdAt,
 }) {
   return (
     <div className="card bg-light my-2">
@@ -21,7 +21,13 @@ export default function JobCards({
           years experience
         </p>
         <p className="card-text">{description}</p>
-        <span className="card-text font-italic">Posted x days ago</span>
+        <span className="card-text font-italic">
+          Posted
+          {' '}
+          {createdAt}
+          {' '}
+          {createdAt > 1 ? 'days ago' : 'day ago'}
+        </span>
       </div>
     </div>
   );
