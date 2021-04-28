@@ -17,5 +17,5 @@ export default function skillModel(sequelize, DataTypes) {
       allowNull: false,
       type: DataTypes.DATE,
     },
-  });
+  }, { underscored: true });
 }
