@@ -1,14 +1,16 @@
 import React from 'react';
 
 export default function JobCards({
-  title, companyName, years, description, min, max, createdAt,
+  idx, title, companyName, years, description, min, max, createdAt, setJobIdx,
 }) {
-  const selectJob = () => {
-    console.log('Job selected!');
+  const selectJob = (e) => {
+    const { target } = e;
+    setJobIdx(idx);
+    console.log('Job selected!: ----', target, idx);
   };
 
   return (
-    <div className="card bg-light my-2 jobcard" onClick={() => selectJob()}>
+    <div className="card bg-light my-2 jobcard" onClick={selectJob}>
       <div className="card-body">
         <h4 className="card-title">{title}</h4>
         <h5 className="card-title lead">{companyName}</h5>

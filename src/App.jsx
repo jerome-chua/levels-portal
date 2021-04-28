@@ -13,9 +13,14 @@ export default function App() {
   console.log('--------- App rendered! ---------');
   const [jobList, setJobList] = useState([]);
   const [jobSearched, setJobSearched] = useState(false);
+  const [selectedIdx, setSelectedIdx] = useState(0);
 
   const now = moment();
-  const firstJobListing = [jobList[0]];
+  const firstJobListing = [jobList[selectedIdx]];
+
+  const setJobIdx = (jobIdx) => {
+    setSelectedIdx(jobIdx);
+  };
 
   return (
     <div>
@@ -34,7 +39,18 @@ export default function App() {
         <div className="row mx-2">
           <div className="col-5">
             {jobSearched ? jobList.length ? jobList.map((job, index) => (
-              <JobCards key={[job, index].join('')} title={job.title} companyName={job.company.name} years={job.yearsRequired} description={job.description} min={job.minSalary} max={job.maxSalary} createdAt={now.diff(new Date(job.createdAt.split(' ')[0]), 'days')} />
+              <JobCards
+                key={[job.title, index].join('')}
+                idx={index}
+                title={job.title}
+                companyName={job.company.name}
+                years={job.yearsRequired}
+                description={job.description}
+                min={job.minSalary}
+                max={job.maxSalary}
+                createdAt={now.diff(new Date(job.createdAt.split(' ')[0]), 'days')}
+                setJobIdx={setJobIdx}
+              />
             )) : <JobAlert /> : <div />}
           </div>
           <div className="col-7">
