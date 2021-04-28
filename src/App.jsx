@@ -13,6 +13,7 @@ export default function App() {
   console.log('--------- App rendered! ---------');
   const [jobList, setJobList] = useState([]);
   const [jobSearched, setJobSearched] = useState(false);
+
   const now = moment();
   const firstJobListing = [jobList[0]];
 

@@ -11,12 +11,35 @@ body {
   background-color: #8d93ab;
 }
 
+.brand-btn {
+  background-color: #8d93ab;
+  color: white;
+}
+
+.brand-btn:hover {
+  background-color: #393b44;
+  color: #f1f3f8;
+}
+
 .brand-color {
   color: #f1f3f8;
 }
 
+.badge {
+  color: white;
+  background-color: #80e4bc;
+  margin: 3px;
+  padding: 0.5rem;
+  border-radius: 25px !important;
+}
+
 .form-control {
   box-sizing: initial;
+}
+
+.skills-container {
+  border-radius: 50px;
+  border: 1px solid rgb(99, 99, 99, 0.4);
 }
 
 @media (max-width: 768px) {

@@ -15,16 +15,21 @@ export default function FullJobDescription({
       <div className="card-body text-secondary">
         <h4 className="card-title">{ title }</h4>
         <h6 className="card-title lead">{companyName}</h6>
-        <button type="Submit" className="btn btn-primary my-3" onClick={() => getAll()}> Apply on Company Site</button>
+        <button type="Submit" className="btn brand-btn my-3" onClick={() => getAll()}> Apply on Company Site</button>
         <hr className="mb-4" />
         <p className="card-text">{description}</p>
-        <span className="card-text font-italic">
+        <h6>Skills required</h6>
+        <div className="skills-container">
+          <span className="badge badge-pill m-2">ReactJS</span>
+        </div>
+
+        <p className="card-text font-italic mt-5">
           Posted
           {' '}
           {createdAt}
           {' '}
           {createdAt > 1 ? 'days ago' : 'day ago'}
-        </span>
+        </p>
       </div>
     </div>
   );
