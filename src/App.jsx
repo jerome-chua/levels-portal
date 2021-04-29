@@ -7,6 +7,7 @@ import ErrorBoundary from './components/ErrorBoundary.jsx';
 import SearchForm from './components/SearchForm.jsx';
 import JobCards from './components/JobCards.jsx';
 import JobAlert from './components/JobAlert.jsx';
+import SkillsModal from './components/SkillsModal.jsx';
 import FullJobDescription from './components/FullJobDescription.jsx';
 
 export default function App() {
@@ -30,12 +31,14 @@ export default function App() {
       axios.get(`/getskills/${jobId.id}`)
         .then((res) => {
           const skills = res.data;
-
           setJobSkills([...skills]);
         })
         .catch((err) => console.log('/jobskills error: ----', err));
     }
   }, [jobSearched, selectedIdx]);
+
+  console.log('Job Searched: ', jobSearched);
+  console.log('Job List: ', jobList);
 
   return (
     <div>
@@ -48,25 +51,28 @@ export default function App() {
         </div>
         <div className="row my-4">
           <div className="col d-flex justify-content-center">
-            <button className="btn btn-secondary px-4 rounded-pill" type="button">Skills</button>
+            <SkillsModal />
+            {/* <button type="button" className="btn btn-secondary px-4 rounded-pill">Skills</button> */}
           </div>
+
         </div>
         <div className="row mx-2">
           <div className="col-5">
-            {jobSearched ? jobList.length ? jobList.map((job, index) => (
-              <JobCards
-                key={[job.title, index].join('')}
-                idx={index}
-                title={job.title}
-                companyName={job.company.name}
-                years={job.yearsRequired}
-                description={job.description}
-                min={job.minSalary}
-                max={job.maxSalary}
-                createdAt={now.diff(new Date(job.createdAt.split(' ')[0]), 'days')}
-                setJobIdx={setJobIdx}
-              />
-            )) : <JobAlert /> : <div />}
+            {jobSearched ? jobList.length
+              ? jobList.map((job, index) => (
+                <JobCards
+                  key={[job.title, index].join('')}
+                  idx={index}
+                  title={job.title}
+                  companyName={job.company.name}
+                  years={job.yearsRequired}
+                  description={job.description}
+                  min={job.minSalary}
+                  max={job.maxSalary}
+                  createdAt={now.diff(new Date(job.createdAt.split(' ')[0]), 'days')}
+                  setJobIdx={setJobIdx}
+                />
+              )) : <JobAlert /> : <div />}
           </div>
           <div className="col-7">
             {jobList.length

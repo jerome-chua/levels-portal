@@ -57,6 +57,7 @@
     "moment": "^2.29.1",
     "pg": "^8.5.1",
     "react-bootstrap-typeahead": "^5.1.4",
+    "react-modal": "^3.13.1",
     "sequelize": "^6.3.5"
   }
 }

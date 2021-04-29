@@ -58,3 +58,20 @@ a:hover {
     width: 105%;
   }
 }
+
+#skills-div {
+  background-color: #f1f3f8 !important;
+  margin: 0 auto;
+  height: 40%;
+  width: 80%;
+  border-radius: 25px !important;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(24, 24, 24, 0.6);
+}

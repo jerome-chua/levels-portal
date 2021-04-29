@@ -18,17 +18,6 @@ export default function initJobsController(db) {
         ],
       });
 
-      const jobSkills = await db.Job.findAll({
-        where: {
-          title: {
-            [Op.regexp]: jobtitle,
-          },
-        },
-      });
-
-      const job = jobSkills[0];
-      const skills = await job.getSkills();
-
       res.send(jobs);
     } catch (err) {
       console.error('Error getting jobs: ----\n', err);
