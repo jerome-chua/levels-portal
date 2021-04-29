@@ -5,7 +5,7 @@ import JobSearchBar from './JobSearchBar.jsx';
 import SalarySearchBar from './SalarySearchBar.jsx';
 import SearchIcon from './SearchIcon.jsx';
 
-export default function SearchForm({ setJobSearched, setJobList, setJobIdx }) {
+export default function SearchForm({ setJobSearched, setJobList }) {
   const [jobTitle, setJobTitle] = useState('');
 
   const getJobs = () => {

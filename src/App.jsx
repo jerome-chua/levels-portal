@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import moment from 'moment';
 import axios from 'axios';
 
@@ -14,13 +14,31 @@ export default function App() {
   const [jobList, setJobList] = useState([]);
   const [jobSearched, setJobSearched] = useState(false);
   const [selectedIdx, setSelectedIdx] = useState(0);
+  const [jobSkills, setJobSkills] = useState([]);
 
   const now = moment();
-  const firstJobListing = [jobList[selectedIdx]];
+  const chosenJobListing = [jobList[selectedIdx]];
 
   const setJobIdx = (jobIdx) => {
     setSelectedIdx(jobIdx);
   };
+
+  const jobId = jobList[selectedIdx];
+
+  useEffect(() => {
+    if (jobId) {
+      axios.get(`/getskills/${jobId.id}`)
+        .then((res) => {
+          const skills = res.data;
+          console.log('check my skills ---------\n', skills);
+
+          setJobSkills([...skills]);
+        })
+        .catch((err) => console.log('/jobskills error: ----', err));
+    }
+    // Currently with this set up, the first job will not be able to display skills.
+    // Could a better way be to instead do a triple join when calling for /getjobs route?
+  }, [selectedIdx]);
 
   return (
     <div>
@@ -55,8 +73,17 @@ export default function App() {
           </div>
           <div className="col-7">
             {jobList.length
-              ? firstJobListing.map((job) => (
-                <FullJobDescription title={job.title} companyName={job.company.name} years={job.yearsRequired} description={job.description} min={job.minSalary} max={job.maxSalary} createdAt={now.diff(new Date(job.createdAt.split(' ')[0]), 'days')} />
+              ? chosenJobListing.map((job) => (
+                <FullJobDescription
+                  title={job.title}
+                  companyName={job.company.name}
+                  years={job.yearsRequired}
+                  description={job.description}
+                  min={job.minSalary}
+                  max={job.maxSalary}
+                  jobSkills={jobSkills}
+                  createdAt={now.diff(new Date(job.createdAt.split(' ')[0]), 'days')}
+                />
               ))
               : <div />}
           </div>

@@ -6,7 +6,7 @@ export default function JobCards({
   const selectJob = (e) => {
     const { target } = e;
     setJobIdx(idx);
-    console.log('Job selected!: ----', target, idx);
+    console.log('Job selected: ----', target, idx);
   };
 
   return (
