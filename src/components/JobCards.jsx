@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function JobCards({
-  idx, title, companyName, years, description, min, max, createdAt, setJobIdx,
+  idx, title, companyName, link, years, description, min, max, createdAt, setJobIdx,
 }) {
   const selectJob = (e) => {
     const { target } = e;

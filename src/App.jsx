@@ -30,15 +30,12 @@ export default function App() {
       axios.get(`/getskills/${jobId.id}`)
         .then((res) => {
           const skills = res.data;
-          console.log('check my skills ---------\n', skills);
 
           setJobSkills([...skills]);
         })
         .catch((err) => console.log('/jobskills error: ----', err));
     }
-    // Currently with this set up, the first job will not be able to display skills.
-    // Could a better way be to instead do a triple join when calling for /getjobs route?
-  }, [selectedIdx]);
+  }, [jobSearched, selectedIdx]);
 
   return (
     <div>
@@ -77,6 +74,7 @@ export default function App() {
                 <FullJobDescription
                   title={job.title}
                   companyName={job.company.name}
+                  link={job.link}
                   years={job.yearsRequired}
                   description={job.description}
                   min={job.minSalary}
