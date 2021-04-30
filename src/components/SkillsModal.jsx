@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Modal from 'react-modal';
+
+import SkillsTypeahead from './SkillsTypeahead.jsx';
 
 Modal.setAppElement(document.getElementById('skills-modal'));
 
 export default function SkillsModal() {
-  const [modalIsOpen, setIsOpen] = React.useState(false);
+  const [modalIsOpen, setIsOpen] = useState(false);
 
   function openModal() {
     setIsOpen(true);
@@ -26,11 +28,12 @@ export default function SkillsModal() {
       >
         <div className="container">
           <div className="row">
-            <div className="col-9">
+            <div className="col-10">
+              <SkillsTypeahead />
               <input placeholder="Filter for skills..." />
             </div>
-            <div className="col-3 d-flex justify-content-end">
-              <button type="button" className="btn btn-light close rounded-pill" onClick={closeModal} aria-label="Close">
+            <div className="col-2 d-flex justify-content-end">
+              <button type="button" className="btn btn-secondary close rounded-circle" onClick={closeModal} aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
