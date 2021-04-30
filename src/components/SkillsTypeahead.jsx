@@ -5,18 +5,19 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import axios from 'axios';
 import Token from './Token.jsx';
 import options from './data.js';
+// import 'react-bootstrap-typeahead/css/Typeahead.css';
 
 export default function SkillsTypeahead() {
   const [selected, setSelected] = useState([]);
   // const [options, setOptions] = useState([]);
 
-  // useEffect(() => {
-  //   axios.get('/allskills')
-  //     .then((res) => {
-  //       setOptions([...res.data]);
-  //     })
-  //     .catch((err) => console.log(err));
-  // }, []);
+  useEffect(() => {
+    axios.get('/allskills')
+      .then((res) => {
+        setOptions([...res.data]);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   const onMove = useCallback(
     (dragIndex, hoverIndex) => {

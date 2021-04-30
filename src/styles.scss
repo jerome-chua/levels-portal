@@ -1,8 +1,11 @@
-// Color palette:
-// #f1f3f8
-// #d6e0f0
-// #8d93ab
-// #393b44
+// /**
+//  * Color palette:
+//  * #f1f3f8
+//  * #d6e0f0
+//  * #8d93ab
+//  * #393b44
+//  */
+
 body {
   background-color: #f1f3f8;
 }
@@ -74,4 +77,15 @@ a:hover {
   right: 0;
   bottom: 0;
   background-color: rgba(24, 24, 24, 0.6);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
