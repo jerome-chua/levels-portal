@@ -5,10 +5,11 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import axios from 'axios';
 import Token from './Token.jsx';
 
-export default function SkillsTypeahead({ setTotalSkills, jobList }) {
+export default function SkillsTypeahead({ setTotalSkills, jobList, setFilteredJobs }) {
   const [options, setOptions] = useState([]);
   const [selected, setSelected] = useState([]);
 
+  // Convert 'name' to 'label' for TypeaheadMulti.
   useEffect(() => {
     axios.get('/allskills')
       .then((res) => {
@@ -36,6 +37,7 @@ export default function SkillsTypeahead({ setTotalSkills, jobList }) {
 
   setTotalSkills(selected.length);
 
+  // Send back array of selected jobs & skills to refine job search.
   const params = {
     skills: selected.map((skill) => skill.label),
     jobs: jobList.map((job) => job.title),
@@ -43,8 +45,9 @@ export default function SkillsTypeahead({ setTotalSkills, jobList }) {
 
   axios.get('/filterjobs', { params })
     .then((res) => {
-      const newJobs = res;
-      console.log('newJobs', newJobs);
+      const jobsFiltered = res.data;
+      setFilteredJobs([...jobsFiltered]);
+      console.log('newJobs', jobsFiltered);
     })
     .catch((err) => console.log(err));
 

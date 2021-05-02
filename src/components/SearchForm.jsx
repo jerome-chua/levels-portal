@@ -5,7 +5,7 @@ import JobsTypeAhead from './JobsTypeahead.jsx';
 import SalarySearchBar from './SalarySearchBar.jsx';
 import SearchIcon from './SearchIcon.jsx';
 
-export default function SearchForm({ setJobSearched, setJobList }) {
+export default function SearchForm({ setJobSearched, setJobList, setJobFiltered }) {
   const [jobTitle, setJobTitle] = useState('');
 
   const getJobs = () => {
@@ -15,6 +15,7 @@ export default function SearchForm({ setJobSearched, setJobList }) {
 
         setJobList(res.data);
         setJobSearched(true);
+        setJobFiltered(false);
       })
       .catch((err) => {
         console.log('err with axios.get("/getjobs"):\n', err);

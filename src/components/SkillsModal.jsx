@@ -6,7 +6,7 @@ import SkillsTypeahead from './SkillsTypeahead.jsx';
 const skillsModal = document.getElementById('skills-modal');
 Modal.setAppElement(skillsModal);
 
-export default function SkillsModal({ jobList }) {
+export default function SkillsModal({ jobList, setJobFiltered, setFilteredJobs }) {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [totalSkills, setTotalSkills] = useState(0);
 
@@ -17,6 +17,12 @@ export default function SkillsModal({ jobList }) {
   function closeModal() {
     setIsOpen(false);
   }
+
+  function handleRefineSearch() {
+    setJobFiltered(true);
+    closeModal();
+  }
+
   return (
     <div id="skills-modal">
       <button type="button" className="btn btn-secondary px-4 rounded-pill" onClick={openModal}>Filter by Skills</button>
@@ -34,6 +40,7 @@ export default function SkillsModal({ jobList }) {
               <SkillsTypeahead
                 setTotalSkills={(num) => setTotalSkills(num)}
                 jobList={jobList}
+                setFilteredJobs={setFilteredJobs}
               />
             </div>
             <div className="col-3 float-right">
@@ -49,7 +56,7 @@ export default function SkillsModal({ jobList }) {
                 {'  '}
                 {totalSkills}
               </h1>
-              <button type="button" className="btn btn-secondary btn-block" onClick={closeModal} aria-label="Close">
+              <button type="button" className="btn btn-secondary btn-block" onClick={handleRefineSearch} aria-label="Close">
                 Refine Search
               </button>
             </div>
