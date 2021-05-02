@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 import JobsTypeAhead from './JobsTypeahead.jsx';
-import JobSearchBar from './JobSearchBar.jsx';
 import SalarySearchBar from './SalarySearchBar.jsx';
 import SearchIcon from './SearchIcon.jsx';
 

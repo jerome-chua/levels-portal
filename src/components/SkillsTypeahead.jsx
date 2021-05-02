@@ -37,8 +37,8 @@ export default function SkillsTypeahead({ setTotalSkills, jobList }) {
   setTotalSkills(selected.length);
 
   const params = {
-    skills: { toJSON: () => selected.map((skill) => skill.label) },
-    jobs: { toJSON: () => jobList.map((job) => job.title) },
+    skills: selected.map((skill) => skill.label),
+    jobs: jobList.map((job) => job.title),
   };
 
   axios.get('/filterjobs', { params })
