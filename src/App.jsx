@@ -37,9 +37,6 @@ export default function App() {
     }
   }, [jobSearched, selectedIdx]);
 
-  console.log('Job Searched: ', jobSearched);
-  console.log('Job List: ', jobList);
-
   return (
     <div>
       <Navbar />
@@ -51,11 +48,8 @@ export default function App() {
         </div>
         <div className="row my-4">
           <div className="col d-flex justify-content-center">
-
-            <SkillsModal />
-
+            <SkillsModal jobList={jobList} />
           </div>
-
         </div>
         <div className="row mx-2">
           <div className="col-5">

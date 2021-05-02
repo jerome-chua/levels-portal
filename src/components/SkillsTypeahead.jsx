@@ -5,15 +5,15 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import axios from 'axios';
 import Token from './Token.jsx';
 
-export default function SkillsTypeahead() {
-  const [selected, setSelected] = useState([]);
+export default function SkillsTypeahead({ setTotalSkills, jobList }) {
   const [options, setOptions] = useState([]);
+  const [selected, setSelected] = useState([]);
 
   useEffect(() => {
     axios.get('/allskills')
       .then((res) => {
-        console.log('ALL Skills:', res.data);
         const allSkills = res.data;
+
         allSkills.forEach((skillObj) => {
           skillObj.label = skillObj.name;
           delete skillObj.name;
@@ -32,6 +32,21 @@ export default function SkillsTypeahead() {
     setSelected(newSelected);
   }, [selected]);
 
+  console.log('Trace together -----\n', selected);
+  setTotalSkills(selected.length);
+
+  const params = {
+    skills: { toJSON: () => selected.map((skill) => skill.label) },
+    jobs: { toJSON: () => jobList.map((job) => job.title) },
+  };
+
+  axios.get('/filterskills', { params })
+    .then((res) => {
+      const newJobs = res;
+      console.log('newJobs', newJobs);
+    })
+    .catch((err) => console.log(err));
+
   return (
     <DndProvider backend={HTML5Backend}>
       <Typeahead
@@ -39,7 +54,7 @@ export default function SkillsTypeahead() {
         multiple
         onChange={setSelected}
         options={options}
-        placeholder="Choose skills..."
+        placeholder="Select skills..."
         renderInput={(inputProps, props) => (
           <TypeaheadInputMulti {...inputProps} selected={selected}>
             {selected.map((option, idx) => (

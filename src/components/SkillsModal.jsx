@@ -3,10 +3,12 @@ import Modal from 'react-modal';
 
 import SkillsTypeahead from './SkillsTypeahead.jsx';
 
-Modal.setAppElement(document.getElementById('skills-modal'));
+const skillsModal = document.getElementById('skills-modal');
+Modal.setAppElement(skillsModal);
 
-export default function SkillsModal() {
+export default function SkillsModal({ jobList }) {
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [totalSkills, setTotalSkills] = useState(0);
 
   function openModal() {
     setIsOpen(true);
@@ -22,6 +24,7 @@ export default function SkillsModal() {
       <Modal
         id="skills-div"
         isOpen={modalIsOpen}
+        ariaHideApp={false}
         onRequestClose={closeModal}
         contentLabel="Example Modal"
         overlayClassName="overlay"
@@ -29,11 +32,23 @@ export default function SkillsModal() {
         <div className="container">
           <div className="row">
             <div className="col-9">
-              <SkillsTypeahead />
+              <SkillsTypeahead setTotalSkills={(num) => setTotalSkills(num)} jobList={jobList} />
             </div>
             <div className="col-3 float-right">
               <button type="button" className="btn btn-secondary close rounded-circle p-2" onClick={closeModal} aria-label="Close">
                 <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          </div>
+          <div className="row my-5 ">
+            <div className="col">
+              <h1 className="lead">
+                Total skills filtered for:
+                {'  '}
+                {totalSkills}
+              </h1>
+              <button type="button" className="btn btn-secondary btn-block" onClick={closeModal} aria-label="Close">
+                Refine Search
               </button>
             </div>
           </div>

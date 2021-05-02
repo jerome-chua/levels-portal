@@ -30,8 +30,8 @@ export default function SearchForm({ setJobSearched, setJobList }) {
         <div className="col-12 col-md-4 my-1">
           <SalarySearchBar />
         </div>
-        <div className="col-12 col-md-2 my-1">
-          <button id="search-btn" type="button" className="btn btn-secondary px-4 mx-1" onClick={getJobs}>
+        <div className="col-12 col-md-2 my-1 d-flex justify-content-center">
+          <button id="search-btn" type="button" className="btn btn-secondary px-4 mx-1 " onClick={getJobs}>
             <SearchIcon />
           </button>
         </div>
