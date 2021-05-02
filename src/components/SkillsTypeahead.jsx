@@ -18,6 +18,7 @@ export default function SkillsTypeahead({ setTotalSkills, jobList }) {
           skillObj.label = skillObj.name;
           delete skillObj.name;
         });
+
         setOptions([...res.data]);
       })
       .catch((err) => console.log(err));
