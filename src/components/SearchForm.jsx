@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+import JobsTypeAhead from './JobsTypeahead.jsx';
 import JobSearchBar from './JobSearchBar.jsx';
 import SalarySearchBar from './SalarySearchBar.jsx';
 import SearchIcon from './SearchIcon.jsx';
@@ -25,7 +26,8 @@ export default function SearchForm({ setJobSearched, setJobList }) {
     <div className="container">
       <div className="row">
         <div className="col-12 col-md-6 my-1">
-          <JobSearchBar setJobTitle={(title) => setJobTitle(title)} />
+          <JobsTypeAhead setJobTitle={(title) => setJobTitle(title)} />
+          {/* <JobSearchBar setJobTitle={(title) => setJobTitle(title)} /> */}
         </div>
         <div className="col-12 col-md-4 my-1">
           <SalarySearchBar />

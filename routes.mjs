@@ -10,6 +10,7 @@ export default function routes(app) {
   app.get('/getskills/:jobId', JobsController.getSkills);
   app.get('/allskills', JobsController.allSkills);
   app.get('/filterjobs', JobsController.jobsFiltered);
+  app.get('/alljobs', JobsController.allJobs);
 
   // Main JS page; include the webpack index.html file.
   app.get('/home', (req, res) => {

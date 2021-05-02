@@ -47,7 +47,7 @@ export default function App() {
         </div>
         <div className="row my-4">
           <div className="col d-flex justify-content-center">
-            <SkillsModal jobList={jobList} />
+            {jobSearched && <SkillsModal jobList={jobList} />}
           </div>
         </div>
         <div className="row mx-2">

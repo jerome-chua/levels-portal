@@ -19,7 +19,7 @@ export default function SkillsModal({ jobList }) {
   }
   return (
     <div id="skills-modal">
-      <button type="button" className="btn btn-secondary px-4 rounded-pill" onClick={openModal}>Skills</button>
+      <button type="button" className="btn btn-secondary px-4 rounded-pill" onClick={openModal}>Filter by Skills</button>
       <Modal
         id="skills-div"
         isOpen={modalIsOpen}

@@ -12,7 +12,7 @@ export default function FullJobDescription({
         <button className="btn brand-btn my-3"><a href={link} className="text-light">Apply on Company Site</a></button>
         <hr className="mb-4" />
         <p className="card-text">{description}</p>
-        <h6>Skills required</h6>
+        <h6 className="mb-3">Required Skills</h6>
         <div className="skills-container">
           {jobSkills.map((skill) => (
             <span key={skill.name.toString()} className="badge badge-pill m-2">{skill.name}</span>

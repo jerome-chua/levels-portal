@@ -74,10 +74,22 @@ export default function initJobsController(db) {
     }
   };
 
+  const allJobs = async (req, res) => {
+    try {
+      const getAllJobs = await db.Job.findAll();
+      console.log('getAllJobs!!---', getAllJobs);
+
+      res.send(getAllJobs);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return {
     getJobs,
     getSkills,
     allSkills,
     jobsFiltered,
+    allJobs,
   };
 }
