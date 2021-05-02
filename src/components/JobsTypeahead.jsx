@@ -3,7 +3,7 @@ import { Typeahead } from 'react-bootstrap-typeahead';
 
 import axios from 'axios';
 
-export default function JobsTypeahead() {
+export default function JobsTypeahead({ setJobTitle }) {
   const [options, setOptions] = useState([]);
   const [selected, setSelected] = useState([]);
 
@@ -19,9 +19,11 @@ export default function JobsTypeahead() {
 
         const uniqueJobTitle = new Set(allJobs.map((job) => job.label));
         setOptions([...uniqueJobTitle]);
+
+        setJobTitle(selected[0]);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [selected]);
 
   return (
     <Typeahead
