@@ -53,10 +53,20 @@ export default function initJobsController(db) {
     }
   };
 
-  const filterSkills = async (req, res) => {
+  const jobsFiltered = async (req, res) => {
+    const { skills, jobs } = req.query;
+
     try {
-      // const { selected } = req.params;
-      console.log('selected --------------\n', req.query);
+      const findJobs = await db.Job.findAll({
+        include: {
+          model: db.Skill,
+          where: {
+            name: skills,
+          },
+        },
+      });
+
+      console.log('LOok at the jobs!!! -----', findJobs);
 
       res.send('Hello world');
     } catch (err) {
@@ -68,6 +78,6 @@ export default function initJobsController(db) {
     getJobs,
     getSkills,
     allSkills,
-    filterSkills,
+    jobsFiltered,
   };
 }

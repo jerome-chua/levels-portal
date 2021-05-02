@@ -5,10 +5,9 @@ import axios from 'axios';
 import Navbar from './components/Navbar.jsx';
 import ErrorBoundary from './components/ErrorBoundary.jsx';
 import SearchForm from './components/SearchForm.jsx';
-import JobCards from './components/JobCards.jsx';
-import JobAlert from './components/JobAlert.jsx';
 import SkillsModal from './components/SkillsModal.jsx';
 import FullJobDescription from './components/FullJobDescription.jsx';
+import UnfilteredJobCards from './components/UnfilteredJobCards.jsx';
 
 export default function App() {
   console.log('--------- App rendered! ---------');
@@ -52,23 +51,7 @@ export default function App() {
           </div>
         </div>
         <div className="row mx-2">
-          <div className="col-5">
-            {jobSearched ? jobList.length
-              ? jobList.map((job, index) => (
-                <JobCards
-                  key={[job.title, index].join('')}
-                  idx={index}
-                  title={job.title}
-                  companyName={job.company.name}
-                  years={job.yearsRequired}
-                  description={job.description}
-                  min={job.minSalary}
-                  max={job.maxSalary}
-                  createdAt={now.diff(new Date(job.createdAt.split(' ')[0]), 'days')}
-                  setJobIdx={setJobIdx}
-                />
-              )) : <JobAlert /> : <div />}
-          </div>
+          <UnfilteredJobCards jobList={jobList} setJobIdx={setJobIdx} jobSearched={jobSearched} />
           <div className="col-7">
             {jobList.length
               ? chosenJobListing.map((job) => (

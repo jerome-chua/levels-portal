@@ -17,7 +17,6 @@ export default function SkillsModal({ jobList }) {
   function closeModal() {
     setIsOpen(false);
   }
-
   return (
     <div id="skills-modal">
       <button type="button" className="btn btn-secondary px-4 rounded-pill" onClick={openModal}>Skills</button>
@@ -30,9 +29,12 @@ export default function SkillsModal({ jobList }) {
         overlayClassName="overlay"
       >
         <div className="container">
-          <div className="row">
+          <div className="row my-2">
             <div className="col-9">
-              <SkillsTypeahead setTotalSkills={(num) => setTotalSkills(num)} jobList={jobList} />
+              <SkillsTypeahead
+                setTotalSkills={(num) => setTotalSkills(num)}
+                jobList={jobList}
+              />
             </div>
             <div className="col-3 float-right">
               <button type="button" className="btn btn-secondary close rounded-circle p-2" onClick={closeModal} aria-label="Close">
@@ -40,7 +42,7 @@ export default function SkillsModal({ jobList }) {
               </button>
             </div>
           </div>
-          <div className="row my-5 ">
+          <div className="row my-5">
             <div className="col">
               <h1 className="lead">
                 Total skills filtered for:

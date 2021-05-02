@@ -29,10 +29,10 @@ export default function SkillsTypeahead({ setTotalSkills, jobList }) {
     const newSelected = selected.slice();
     newSelected.splice(dragIndex, 1);
     newSelected.splice(hoverIndex, 0, item);
+
     setSelected(newSelected);
   }, [selected]);
 
-  console.log('Trace together -----\n', selected);
   setTotalSkills(selected.length);
 
   const params = {
@@ -40,7 +40,7 @@ export default function SkillsTypeahead({ setTotalSkills, jobList }) {
     jobs: { toJSON: () => jobList.map((job) => job.title) },
   };
 
-  axios.get('/filterskills', { params })
+  axios.get('/filterjobs', { params })
     .then((res) => {
       const newJobs = res;
       console.log('newJobs', newJobs);
@@ -56,7 +56,7 @@ export default function SkillsTypeahead({ setTotalSkills, jobList }) {
         options={options}
         placeholder="Select skills..."
         renderInput={(inputProps, props) => (
-          <TypeaheadInputMulti {...inputProps} selected={selected}>
+          <TypeaheadInputMulti {...inputProps} className="p-3" selected={selected}>
             {selected.map((option, idx) => (
               <Token
                 index={idx}
