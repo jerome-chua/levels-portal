@@ -51,8 +51,9 @@ export default function App() {
         </div>
         <div className="row my-4">
           <div className="col d-flex justify-content-center">
+
             <SkillsModal />
-            {/* <button type="button" className="btn btn-secondary px-4 rounded-pill">Skills</button> */}
+
           </div>
 
         </div>

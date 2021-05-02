@@ -28,18 +28,16 @@ export default function SkillsModal() {
       >
         <div className="container">
           <div className="row">
-            <div className="col-10">
+            <div className="col-9">
               <SkillsTypeahead />
-              <input placeholder="Filter for skills..." />
             </div>
-            <div className="col-2 d-flex justify-content-end">
-              <button type="button" className="btn btn-secondary close rounded-circle" onClick={closeModal} aria-label="Close">
+            <div className="col-3 float-right">
+              <button type="button" className="btn btn-secondary close rounded-circle p-2" onClick={closeModal} aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
           </div>
         </div>
-
       </Modal>
     </div>
   );
