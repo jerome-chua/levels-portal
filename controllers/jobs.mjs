@@ -73,7 +73,7 @@ export default function initJobsController(db) {
 
       res.send(filterJobs);
     } catch (err) {
-      console.log(err);
+      console.log('Error:', err);
     }
   };
 

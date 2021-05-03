@@ -3,6 +3,7 @@ import axios from 'axios';
 import Modal from 'react-modal';
 
 import SkillsTypeahead from './SkillsTypeahead.jsx';
+import ErrorBoundary from './ErrorBoundary.jsx';
 
 const skillsModal = document.getElementById('skills-modal');
 Modal.setAppElement(skillsModal);
@@ -35,6 +36,7 @@ export default function SkillsModal({
     axios.get('/filterjobs', { params })
       .then((res) => {
         setJobList(res.data);
+        console.log('Peek res.data', res.data);
       })
       .catch((err) => console.log(err));
   }
@@ -53,10 +55,12 @@ export default function SkillsModal({
         <div className="container">
           <div className="row my-2">
             <div className="col-9">
-              <SkillsTypeahead
-                setTotalSkills={(num) => setTotalSkills(num)}
-                sendSelected={sendSelected}
-              />
+              <ErrorBoundary>
+                <SkillsTypeahead
+                  setTotalSkills={(num) => setTotalSkills(num)}
+                  sendSelected={sendSelected}
+                />
+              </ErrorBoundary>
             </div>
             <div className="col-3 float-right">
               <button type="button" className="btn btn-secondary close rounded-circle p-2" onClick={closeModal} aria-label="Close">

@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment';
 
 import JobCards from './JobCards.jsx';
-import JobAlert from './JobAlert.jsx';
+import JobAlert from './JobAlert.jsx'; // unfiltered
 
 const now = moment();
 

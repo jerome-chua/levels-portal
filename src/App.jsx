@@ -22,12 +22,11 @@ export default function App() {
   };
 
   const now = moment();
-  const chosenJobListing = [jobList[selectedIdx]];
-  const jobId = jobList[selectedIdx];
+  const chosenJobListing = jobList[selectedIdx];
 
   useEffect(() => {
-    if (jobId) {
-      axios.get(`/getskills/${jobId.id}`)
+    if (chosenJobListing) {
+      axios.get(`/getskills/${chosenJobListing.id}`)
         .then((res) => {
           const skills = res.data;
           setJobSkills([...skills]);
@@ -35,8 +34,6 @@ export default function App() {
         .catch((err) => console.log('/jobskills error: ----', err));
     }
   }, [jobSearched, selectedIdx]);
-
-  console.log('chosenJobListing', chosenJobListing);
 
   return (
     <div>
@@ -65,11 +62,12 @@ export default function App() {
             )}
           </div>
         </div>
+
         <div className="row mx-2">
           {jobFiltered
             ? (
               <FilteredJobCards
-                jobList={filteredJobs}
+                jobList={jobList}
                 setJobIdx={setJobIdx}
                 jobSearched={jobSearched}
               />
@@ -82,22 +80,22 @@ export default function App() {
               />
             )}
           <div className="col-7">
-            {jobList.length
-              ? chosenJobListing.map((job) => (
+            {(jobList.length && chosenJobListing)
+              ? (
                 <ErrorBoundary>
                   <FullJobDescription
-                    title={job.title}
-                    companyName={job.company.name}
-                    link={job.link}
-                    years={job.yearsRequired}
-                    description={job.description}
-                    min={job.minSalary}
-                    max={job.maxSalary}
+                    title={chosenJobListing.title}
+                    companyName={chosenJobListing.company.name}
+                    link={chosenJobListing.link}
+                    years={chosenJobListing.yearsRequired}
+                    description={chosenJobListing.description}
+                    min={chosenJobListing.minSalary}
+                    max={chosenJobListing.maxSalary}
                     jobSkills={jobSkills}
-                    createdAt={now.diff(new Date(job.createdAt.split(' ')[0]), 'days')}
+                    createdAt={now.diff(new Date(chosenJobListing.createdAt.split(' ')[0]), 'days')}
                   />
                 </ErrorBoundary>
-              ))
+              )
               : <div />}
           </div>
         </div>
