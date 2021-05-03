@@ -1,5 +1,8 @@
 import React from 'react';
 
+import SignIn from './SignIn.jsx';
+import UserProfile from './UserProfile.jsx';
+
 export default function Navbar() {
   const signedIn = false;
 
@@ -10,11 +13,22 @@ export default function Navbar() {
   function renderSignIn() {
     const searchComp = document.getElementById('search-related');
     if (searchComp) searchComp.remove();
+
+    return (
+      <div>
+        <SignIn />
+      </div>
+    );
   }
 
   function renderProfile() {
     const searchComp = document.getElementById('search-related');
     if (searchComp) searchComp.remove();
+    return (
+      <div>
+        <UserProfile />
+      </div>
+    );
   }
 
   return (

@@ -1,9 +1,7 @@
 import React from 'react';
 
-import Navbar from './Navbar.jsx';
-
-export default function Login() {
-  function searchInput() {
+export default function SignIn() {
+  function SearchInput() {
     return (
       <input type="text" />
     );
@@ -11,11 +9,11 @@ export default function Login() {
 
   return (
     <div>
-      <Navbar />
       <div className="container">
         <div className="row">
           <div className="col">
-            <searchInput />
+            <h1>Welcome back.</h1>
+            <SearchInput />
           </div>
         </div>
       </div>
