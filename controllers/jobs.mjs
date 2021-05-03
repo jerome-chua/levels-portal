@@ -71,8 +71,6 @@ export default function initJobsController(db) {
         ],
       });
 
-      console.log('-------------- 🛑 filterJobs 😄 -------------- \n', filterJobs);
-
       res.send(filterJobs);
     } catch (err) {
       console.log(err);

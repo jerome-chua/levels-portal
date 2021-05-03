@@ -12,7 +12,6 @@ import FilteredJobCards from './components/FilteredJobCards.jsx';
 
 export default function App() {
   const [jobList, setJobList] = useState([]);
-  const [filteredJobs, setFilteredJobs] = useState([]);
   const [jobSearched, setJobSearched] = useState(false);
   const [jobFiltered, setJobFiltered] = useState(false);
   const [selectedIdx, setSelectedIdx] = useState(0);
@@ -37,7 +36,7 @@ export default function App() {
     }
   }, [jobSearched, selectedIdx]);
 
-  console.log('filteredJobs: ------', filteredJobs);
+  console.log('chosenJobListing', chosenJobListing);
 
   return (
     <div>
@@ -61,7 +60,7 @@ export default function App() {
             <SkillsModal
               jobList={jobList}
               setJobFiltered={setJobFiltered}
-              setFilteredJobs={setFilteredJobs}
+              setJobList={(jobs) => setJobList(jobs)}
             />
             )}
           </div>
@@ -83,7 +82,7 @@ export default function App() {
               />
             )}
           <div className="col-7">
-            {(jobList.length | filteredJobs.length)
+            {jobList.length
               ? chosenJobListing.map((job) => (
                 <ErrorBoundary>
                   <FullJobDescription

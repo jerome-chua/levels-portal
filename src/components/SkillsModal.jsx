@@ -7,7 +7,9 @@ import SkillsTypeahead from './SkillsTypeahead.jsx';
 const skillsModal = document.getElementById('skills-modal');
 Modal.setAppElement(skillsModal);
 
-export default function SkillsModal({ jobList, setJobFiltered, setFilteredJobs }) {
+export default function SkillsModal({
+  jobList, setJobFiltered, setJobList,
+}) {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [totalSkills, setTotalSkills] = useState(0);
   const [selected, sendSelected] = useState([]);
@@ -32,9 +34,7 @@ export default function SkillsModal({ jobList, setJobFiltered, setFilteredJobs }
     // Send request to DB upon getting params from MultiTypeAhead.
     axios.get('/filterjobs', { params })
       .then((res) => {
-        const jobsFiltered = res.data;
-
-        setFilteredJobs([...jobsFiltered]);
+        setJobList(res.data);
       })
       .catch((err) => console.log(err));
   }
@@ -55,8 +55,6 @@ export default function SkillsModal({ jobList, setJobFiltered, setFilteredJobs }
             <div className="col-9">
               <SkillsTypeahead
                 setTotalSkills={(num) => setTotalSkills(num)}
-                jobList={jobList}
-                setFilteredJobs={setFilteredJobs}
                 sendSelected={sendSelected}
               />
             </div>

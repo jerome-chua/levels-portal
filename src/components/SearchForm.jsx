@@ -11,8 +11,6 @@ export default function SearchForm({ setJobSearched, setJobList, setJobFiltered 
   const getJobs = () => {
     axios.get(`/getjobs/${jobTitle}`)
       .then((res) => {
-        console.log('Data coming back from getJobs controller:\n', res.data);
-
         setJobList(res.data);
         setJobSearched(true);
         setJobFiltered(false);

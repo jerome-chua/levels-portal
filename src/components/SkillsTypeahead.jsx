@@ -6,7 +6,7 @@ import axios from 'axios';
 import Token from './Token.jsx';
 
 export default function SkillsTypeahead({
-  setTotalSkills, setFilteredJobs, sendSelected,
+  setTotalSkills, sendSelected,
 }) {
   const [options, setOptions] = useState([]);
   const [selected, setSelected] = useState([]);
@@ -37,8 +37,10 @@ export default function SkillsTypeahead({
     setSelected(newSelected);
   }, [selected]);
 
-  sendSelected(selected);
-  setTotalSkills(selected.length);
+  useEffect(() => {
+    sendSelected(selected);
+    setTotalSkills(selected.length);
+  }, [selected]);
 
   return (
     <DndProvider backend={HTML5Backend}>
