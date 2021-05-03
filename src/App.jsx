@@ -11,7 +11,6 @@ import UnfilteredJobCards from './components/UnfilteredJobCards.jsx';
 import FilteredJobCards from './components/FilteredJobCards.jsx';
 
 export default function App() {
-  console.log('--------- App rendered! ---------');
   const [jobList, setJobList] = useState([]);
   const [filteredJobs, setFilteredJobs] = useState([]);
   const [jobSearched, setJobSearched] = useState(false);
@@ -46,13 +45,24 @@ export default function App() {
         <div className="row">
           <div className="col">
             <ErrorBoundary>
-              <SearchForm setJobSearched={setJobSearched} setJobList={(jobs) => setJobList(jobs)} setJobFiltered={setJobFiltered} />
+              <SearchForm
+                setJobSearched={setJobSearched}
+                setJobList={(jobs) => setJobList(jobs)}
+                setJobFiltered={setJobFiltered}
+              />
             </ErrorBoundary>
           </div>
         </div>
         <div className="row my-4">
           <div className="col d-flex justify-content-center">
-            {jobSearched && <SkillsModal jobList={jobList} setJobFiltered={setJobFiltered} setFilteredJobs={setFilteredJobs} />}
+            {jobSearched
+            && (
+            <SkillsModal
+              jobList={jobList}
+              setJobFiltered={setJobFiltered}
+              setFilteredJobs={setFilteredJobs}
+            />
+            )}
           </div>
         </div>
         <div className="row mx-2">

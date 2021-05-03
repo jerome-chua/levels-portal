@@ -8,6 +8,7 @@ Modal.setAppElement(skillsModal);
 
 export default function SkillsModal({ jobList, setJobFiltered, setFilteredJobs }) {
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [searchRefined, setSearchRefined] = useState(false);
   const [totalSkills, setTotalSkills] = useState(0);
 
   function openModal() {
@@ -20,6 +21,7 @@ export default function SkillsModal({ jobList, setJobFiltered, setFilteredJobs }
 
   function handleRefineSearch() {
     setJobFiltered(true);
+    setSearchRefined(true);
     closeModal();
   }
 
@@ -41,6 +43,8 @@ export default function SkillsModal({ jobList, setJobFiltered, setFilteredJobs }
                 setTotalSkills={(num) => setTotalSkills(num)}
                 jobList={jobList}
                 setFilteredJobs={setFilteredJobs}
+                handleRefineSearch={handleRefineSearch}
+                searchRefined={searchRefined}
               />
             </div>
             <div className="col-3 float-right">

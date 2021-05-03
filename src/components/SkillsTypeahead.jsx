@@ -5,7 +5,9 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import axios from 'axios';
 import Token from './Token.jsx';
 
-export default function SkillsTypeahead({ setTotalSkills, jobList, setFilteredJobs }) {
+export default function SkillsTypeahead({
+  setTotalSkills, jobList, setFilteredJobs, searchRefined,
+}) {
   const [options, setOptions] = useState([]);
   const [selected, setSelected] = useState([]);
 
@@ -43,13 +45,14 @@ export default function SkillsTypeahead({ setTotalSkills, jobList, setFilteredJo
     jobs: jobList.map((job) => job.title),
   };
 
-  axios.get('/filterjobs', { params })
-    .then((res) => {
-      const jobsFiltered = res.data;
-      setFilteredJobs([...jobsFiltered]);
-      console.log('newJobs', jobsFiltered);
-    })
-    .catch((err) => console.log(err));
+  if (searchRefined) {
+    axios.get('/filterjobs', { params })
+      .then((res) => {
+        const jobsFiltered = res.data;
+        setFilteredJobs([...jobsFiltered]);
+      })
+      .catch((err) => console.log(err));
+  }
 
   return (
     <DndProvider backend={HTML5Backend}>

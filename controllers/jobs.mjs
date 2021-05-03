@@ -69,8 +69,9 @@ export default function initJobsController(db) {
           },
           { model: db.Company },
         ],
-
       });
+
+      console.log('-------------- 🛑 filterJobs 😄 -------------- \n', filterJobs);
 
       res.send(filterJobs);
     } catch (err) {
