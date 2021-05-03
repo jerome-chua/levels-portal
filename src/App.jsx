@@ -62,7 +62,6 @@ export default function App() {
             )}
           </div>
         </div>
-
         <div className="row mx-2">
           {jobFiltered
             ? (
