@@ -18,13 +18,12 @@ export default function App() {
   const [selectedIdx, setSelectedIdx] = useState(0);
   const [jobSkills, setJobSkills] = useState([]);
 
-  const now = moment();
-  const chosenJobListing = [jobList[selectedIdx]];
-
   const setJobIdx = (jobIdx) => {
     setSelectedIdx(jobIdx);
   };
 
+  const now = moment();
+  const chosenJobListing = [jobList[selectedIdx]];
   const jobId = jobList[selectedIdx];
 
   useEffect(() => {
@@ -38,10 +37,12 @@ export default function App() {
     }
   }, [jobSearched, selectedIdx]);
 
+  console.log('filteredJobs: ------', filteredJobs);
+
   return (
     <div>
       <Navbar />
-      <div className="container-fluid mt-5">
+      <div id="search-related" className="container-fluid mt-5">
         <div className="row">
           <div className="col">
             <ErrorBoundary>
@@ -82,7 +83,7 @@ export default function App() {
               />
             )}
           <div className="col-7">
-            {jobList.length
+            {(jobList.length | filteredJobs.length)
               ? chosenJobListing.map((job) => (
                 <ErrorBoundary>
                   <FullJobDescription

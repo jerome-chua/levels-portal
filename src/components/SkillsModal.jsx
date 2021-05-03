@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import Modal from 'react-modal';
 
 import SkillsTypeahead from './SkillsTypeahead.jsx';
@@ -8,8 +9,8 @@ Modal.setAppElement(skillsModal);
 
 export default function SkillsModal({ jobList, setJobFiltered, setFilteredJobs }) {
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [searchRefined, setSearchRefined] = useState(false);
   const [totalSkills, setTotalSkills] = useState(0);
+  const [selected, sendSelected] = useState([]);
 
   function openModal() {
     setIsOpen(true);
@@ -21,8 +22,21 @@ export default function SkillsModal({ jobList, setJobFiltered, setFilteredJobs }
 
   function handleRefineSearch() {
     setJobFiltered(true);
-    setSearchRefined(true);
     closeModal();
+
+    const params = {
+      skills: selected.map((skill) => skill.label),
+      jobs: jobList.map((job) => job.title),
+    };
+
+    // Send request to DB upon getting params from MultiTypeAhead.
+    axios.get('/filterjobs', { params })
+      .then((res) => {
+        const jobsFiltered = res.data;
+
+        setFilteredJobs([...jobsFiltered]);
+      })
+      .catch((err) => console.log(err));
   }
 
   return (
@@ -43,8 +57,7 @@ export default function SkillsModal({ jobList, setJobFiltered, setFilteredJobs }
                 setTotalSkills={(num) => setTotalSkills(num)}
                 jobList={jobList}
                 setFilteredJobs={setFilteredJobs}
-                handleRefineSearch={handleRefineSearch}
-                searchRefined={searchRefined}
+                sendSelected={sendSelected}
               />
             </div>
             <div className="col-3 float-right">
