@@ -1,9 +1,6 @@
 import React from 'react';
 
-import SignIn from './SignIn.jsx';
-import UserProfile from './UserProfile.jsx';
-
-export default function Navbar() {
+export default function Navbar({ setSigningIn }) {
   const signedIn = false;
 
   function renderJobSearch() {
@@ -14,21 +11,12 @@ export default function Navbar() {
     const searchComp = document.getElementById('search-related');
     if (searchComp) searchComp.remove();
 
-    return (
-      <div>
-        <SignIn />
-      </div>
-    );
+    setSigningIn(true);
   }
 
   function renderProfile() {
     const searchComp = document.getElementById('search-related');
     if (searchComp) searchComp.remove();
-    return (
-      <div>
-        <UserProfile />
-      </div>
-    );
   }
 
   return (
