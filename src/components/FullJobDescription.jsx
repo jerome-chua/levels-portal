@@ -1,5 +1,13 @@
 import React from 'react';
 
+const stringToPoints = (string) => {
+  const randomInt = Math.floor(Math.random() * 5) + 2;
+  const points = string.split('|', randomInt);
+  const reactPoints = points.map((item) => <li>{item}</li>);
+
+  return reactPoints;
+};
+
 export default function FullJobDescription({
   title, companyName, link, years, description, min, max, jobSkills, createdAt,
 }) {
@@ -10,8 +18,11 @@ export default function FullJobDescription({
         <h6 className="card-title lead">{companyName}</h6>
         <button className="btn brand-btn my-3"><a href={link} className="text-light">Apply on Company Site</a></button>
         <hr className="mb-4" />
-        <p className="card-text">{description}</p>
-        <h6 className="mb-3">Required Skills</h6>
+        <h5 className="mb-3">Description</h5>
+        <ul>
+          {stringToPoints(description)}
+        </ul>
+        <h6 className="mt-5 mb-3">Required Skills</h6>
         <div className="skills-container">
           {jobSkills.map((skill) => (
             <span key={skill.name.toString()} className="badge badge-pill m-2">{skill.name}</span>
