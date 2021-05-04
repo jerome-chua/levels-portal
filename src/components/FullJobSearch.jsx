@@ -86,6 +86,7 @@ export default function App() {
                     link={chosenJobListing.link}
                     years={chosenJobListing.yearsRequired}
                     description={chosenJobListing.description}
+                    requirement={chosenJobListing.requirement}
                     min={chosenJobListing.minSalary}
                     max={chosenJobListing.maxSalary}
                     jobSkills={jobSkills}

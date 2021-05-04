@@ -19,6 +19,7 @@ export default function UnfilteredJobCards({ jobList, setJobIdx, jobSearched }) 
               companyName={job.company.name}
               years={job.yearsRequired}
               description={job.description}
+              requirement={job.requirement}
               min={job.minSalary}
               max={job.maxSalary}
               createdAt={now.diff(new Date(job.createdAt.split(' ')[0]), 'days')}

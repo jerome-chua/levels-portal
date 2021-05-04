@@ -9,7 +9,7 @@ const stringToPoints = (string) => {
 };
 
 export default function FullJobDescription({
-  title, companyName, link, years, description, min, max, jobSkills, createdAt,
+  title, companyName, link, years, description, requirement, min, max, jobSkills, createdAt,
 }) {
   return (
     <div className="card border-secondary my-2 mb-3">
@@ -22,8 +22,12 @@ export default function FullJobDescription({
         <ul>
           {stringToPoints(description)}
         </ul>
+        <h5 className="mt-5 mb-3">Requirements</h5>
+        <ul>
+          {stringToPoints(requirement)}
+        </ul>
         <h6 className="mt-5 mb-3">Required Skills</h6>
-        <div className="skills-container">
+        <div className="skills-container p-2">
           {jobSkills.map((skill) => (
             <span key={skill.name.toString()} className="badge badge-pill m-2">{skill.name}</span>
           ))}
