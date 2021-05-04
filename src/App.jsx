@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import JobSearch from './components/JobSearch.jsx';
+import UserProfile from './components/UserProfile.jsx';
 import GuestNavbar from './components/GuestNavbar.jsx';
 import UserNavbar from './components/UserNavbar.jsx';
 import SignIn from './components/SignIn.jsx';
@@ -19,12 +20,21 @@ export default function App() {
             setPageView={(newView) => setPageView(newView)}
           />
         )
-        : <UserNavbar />}
+        : (
+          <UserNavbar
+            setPageView={(newView) => setPageView(newView)}
+          />
+        )}
 
       {pageView === 'JOB_SEARCH' && <JobSearch />}
       {pageView === 'SIGN_IN' && (
       <SignIn
         setPageView={(newView) => setPageView(newView)}
+        setStatus={(newStatus) => setStatus(newStatus)}
+      />
+      )}
+      {pageView === 'PROFILE' && (
+      <UserProfile
         setStatus={(newStatus) => setStatus(newStatus)}
       />
       )}
