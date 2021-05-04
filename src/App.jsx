@@ -14,10 +14,20 @@ export default function App() {
   return (
     <div>
       {status === 'GUEST'
-        ? <GuestNavbar setPageView={(newView) => setPageView(newView)} />
+        ? (
+          <GuestNavbar
+            setPageView={(newView) => setPageView(newView)}
+          />
+        )
         : <UserNavbar />}
+
       {pageView === 'JOB_SEARCH' && <JobSearch />}
-      {pageView === 'SIGN_IN' && <SignIn setPageView={(newView) => setPageView(newView)} />}
+      {pageView === 'SIGN_IN' && (
+      <SignIn
+        setPageView={(newView) => setPageView(newView)}
+        setStatus={(newStatus) => setStatus(newStatus)}
+      />
+      )}
     </div>
 
   );

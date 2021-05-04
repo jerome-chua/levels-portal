@@ -47,7 +47,7 @@ export default function UserNavbar() {
                 id="sign-in"
                 onClick={renderSignIn}
               >
-                Sign in
+                Profile
               </a>
             </ul>
           )}

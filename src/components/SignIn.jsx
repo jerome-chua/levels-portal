@@ -1,9 +1,10 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 
-export default function SignIn({ setPageView }) {
+export default function SignIn({ setPageView, setStatus }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [inputWrong, setInputWrong] = useState(false);
 
   function handleEmailChange(evt) {
     const text = evt.target.value;
@@ -23,6 +24,9 @@ export default function SignIn({ setPageView }) {
         console.log('LOOK AT RES:', res);
         if (res.data === 'SIGNIN_SUCCESS') {
           setPageView('JOB_SEARCH');
+          setStatus('USER');
+        } else if (res.data === 'SIGNIN_FAILURE') {
+          setInputWrong(true);
         }
       })
       .catch((err) => console.log('Trouble logging user in', err));
@@ -58,6 +62,11 @@ export default function SignIn({ setPageView }) {
               >
                 Sign in
               </button>
+              {inputWrong && (
+              <div className="alert alert-danger mt-3 text-center" role="alert">
+                Email or password entered wrongly. Please try again.
+              </div>
+              )}
             </div>
           </div>
         </div>
