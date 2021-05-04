@@ -3,13 +3,17 @@ export default function initCandidatesController(db) {
     try {
       const { email, password } = req.body;
 
-      const getCandidate = await db.Candidate.findOne({
+      const candidate = await db.Candidate.findOne({
         where: {
           email,
         },
       });
 
-      console.log(getCandidate);
+      if (password === candidate.password) {
+        res.send('SIGNIN_SUCCESS');
+      } else {
+        res.send('SIGNIN_FAILURE');
+      }
     } catch (err) {
       console.log(err);
     }

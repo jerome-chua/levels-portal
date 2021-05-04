@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 
-export default function SignIn() {
+export default function SignIn({ setView }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -18,21 +18,18 @@ export default function SignIn() {
   }
 
   function getUser() {
-    // const userData = {
-    //   email,
-    //   password,
-    // };
-
     axios.post('/signin', { email, password })
       .then((res) => {
-        console.log(res);
+        if (res.data === 'SIGNIN_SUCCESS') {
+          setView('is-signedin');
+        }
       })
       .catch((err) => console.log('Trouble logging user in'));
   }
 
   return (
     <div>
-      <div className="container w-75">
+      <div id="signin-container" className="container w-75">
         <div className="row mt-5">
           <div className="col">
             <h3>Sign In</h3>
@@ -55,7 +52,7 @@ export default function SignIn() {
               />
               <button
                 type="button"
-                className="btn btn-dark btn-block mt-3"
+                className="btn btn-dark mt-4 py-2 px-5"
                 onClick={getUser}
               >
                 Sign in

@@ -1,21 +1,16 @@
 import React from 'react';
-import GuestJobSearch from './GuestJobSearch.jsx';
 
-export default function Navbar({ setSigningIn }) {
+export default function UserNavbar() {
   const signedIn = false;
 
   function renderJobSearch() {
     const signIn = document.getElementById('signin-container');
     if (signIn) signIn.remove();
-
-    setSigningIn(false);
   }
 
   function renderSignIn() {
     const searchComp = document.getElementById('search-related');
     if (searchComp) searchComp.remove();
-
-    setSigningIn(true);
   }
 
   function renderProfile() {
