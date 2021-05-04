@@ -1,21 +1,23 @@
 import React, { useState, useEffect } from 'react';
 
-import GuestJobSearch from './components/GuestJobSearch.jsx';
-import Navbar from './components/Navbar.jsx';
+import JobSearch from './components/JobSearch.jsx';
+import GuestNavbar from './components/GuestNavbar.jsx';
 import UserNavbar from './components/UserNavbar.jsx';
 import SignIn from './components/SignIn.jsx';
 
 export default function App() {
-  const [signInClicked, setSigningIn] = useState(false);
-  const [view, setView] = useState('not-signedin');
+  const [status, setStatus] = useState('GUEST');
+  const [pageView, setPageView] = useState('JOB_SEARCH');
+
+  console.log(pageView);
 
   return (
     <div>
-      {view === 'not-signedin'
-        ? <Navbar setSigningIn={setSigningIn} />
+      {status === 'GUEST'
+        ? <GuestNavbar setPageView={(newView) => setPageView(newView)} />
         : <UserNavbar />}
-      {!signInClicked && <GuestJobSearch />}
-      {signInClicked && <SignIn setMode={(changeMode) => setView(changeMode)} />}
+      {pageView === 'JOB_SEARCH' && <JobSearch />}
+      {pageView === 'SIGN_IN' && <SignIn setPageView={(newView) => setPageView(newView)} />}
     </div>
 
   );

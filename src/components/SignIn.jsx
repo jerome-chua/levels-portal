@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 
-export default function SignIn({ setView }) {
+export default function SignIn({ setPageView }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -20,11 +20,12 @@ export default function SignIn({ setView }) {
   function getUser() {
     axios.post('/signin', { email, password })
       .then((res) => {
+        console.log('LOOK AT RES:', res);
         if (res.data === 'SIGNIN_SUCCESS') {
-          setView('is-signedin');
+          setPageView('JOB_SEARCH');
         }
       })
-      .catch((err) => console.log('Trouble logging user in'));
+      .catch((err) => console.log('Trouble logging user in', err));
   }
 
   return (

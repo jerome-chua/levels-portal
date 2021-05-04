@@ -9,7 +9,7 @@ import FullJobDescription from './FullJobDescription.jsx';
 import UnfilteredJobCards from './UnfilteredJobCards.jsx';
 import FilteredJobCards from './FilteredJobCards.jsx';
 
-export default function GuestJobSearch() {
+export default function JobSearch() {
   const [jobList, setJobList] = useState([]);
   const [jobSearched, setJobSearched] = useState(false);
   const [jobFiltered, setJobFiltered] = useState(false);
