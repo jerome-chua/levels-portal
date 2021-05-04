@@ -3,8 +3,6 @@ export default function initCandidatesController(db) {
     try {
       const { email, password } = req.body;
 
-      console.log('Request body email: -----', email);
-
       const getCandidate = await db.Candidate.findOne({
         where: {
           email,

@@ -81,6 +81,9 @@ module.exports = {
       description: {
         type: Sequelize.TEXT,
       },
+      requirement: {
+        type: Sequelize.TEXT,
+      },
       years_required: {
         type: Sequelize.INTEGER,
       },

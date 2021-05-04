@@ -1,5 +1,39 @@
 const faker = require('faker');
 
+const randomMonth = () => {
+  const months = [3, 4];
+  const randomInt = Math.floor(Math.random() * 1);
+  return months[randomInt];
+};
+const randomDay = () => {
+  const randomInt = Math.floor(Math.random() * 29) + 1;
+  return randomInt;
+};
+
+const randomDescription = () => {
+  const optionOne = 'Candidates need to be able to work efficiently and effectively in a fast-paced dynamic team environment.|Candidates will develop, execute and maintain mobile/web/backend service test automation to test the product thoroughly.|Candidates should have a combination of solid in-depth knowledge of Quality Assurance, as well as knowledge  of object oriented design and programming principles.|Candidates need to maintain good communication and working relationships with stakeholders, co-workers and project team.|Candidates need to define test plans, test specifications, test suites, test cases, test data as well as propose tools for functional, security and performance testing in a programmatic manner.';
+
+  const optionTwo = 'Full ownership of the integration and development of company back-end and front-end software for Asia Pacific customers by understanding the process of the system and how it works.|To know what the company needs to develop based on what the customer needs and what problems to solve.|Interface with customer to do presentation about solution based Software integration into their system.|Go to the detailed specifications of the customer requirements for their backend software needs.|Presentation and development of new solutions and provide different approaches to improve the company software platform.|Help the O&M Service Engineer to address quality and operation issues with APAC customers.|Provide report to the team on technical issues, product improvement suggestions, and lessons learned for product improvement.';
+
+  const optionThree = 'Develop the software for new generation semiconductor tool.|Find solution to handle issue or new requirment from global customer.|Help field engineer and regional support engineer to troubleshoot the tool.|Other innoative software developing project.|Interface to meet regional customer requirements.|Short term (1 or 2 weeks) Asia region (Korea/Taiwan/China/Japan/Singapore) support is possible at future.|Follow customer’s and complany’s Intellectual Property (IP) policy.|Ensure safe working condition at work site.|Any other duties as assigned by the Immediate Supervisor.';
+
+  const requirements = [optionOne, optionTwo, optionThree];
+
+  return requirements[Math.floor(Math.random() * requirements.length)];
+};
+
+const randomRequirement = () => {
+  const optionOne = 'A degree in computer science, software engineering, information technology or related fields.|3+ years of experience as QA Engineer/ Automation Engineer or Software Development Engineer in Test.|Excellent communication, collaboration and analytical skills in English.|Perform testing of iOS, Android apps, Web applications and Backend APIs to ensure that product meets requirements.|Strong server side coding experience on any object-oriented programming languages (Java, Golang) or any script languages (Python, Shell).|Demonstrated experience in test automation framework design and implementation (Selenium, Appium, Espresso, Kakao, Xcode, Flutter etc.|Knowledge of Linux, AWS, BS web system|Exposure to web & mobile technologies (HTTP, XML, REST, HTML etc).|Understanding of database concepts and queries (MySQL).';
+
+  const optionTwo = 'Experience in writing clear, concise and comprehensive test plans and test cases.|Hands-on experience with both white box and black box testing.|Proven working experience in software quality experience.|Proven ability to troubleshoot issues and determine the root cause of defects.|Strong knowledge of software QC methodologies, tools and processes.|Familiar with Agile/Scrum development environment.|Completed 2-3 full cycle SW testing projects.';
+
+  const optionThree = 'Bachelors in Computer Science or related fields.|Knowledgeable in (frontend technologies including but not limited to Angular, Html Javascript, SCSS) or (back-end technologies including but not limited to Django, MySQL, AWS Services).|Excellent and precise communication skills.|Excellent debugging and problem solving skills.|(Senior) 3-5 years working experience in backend development.|(Senior) Design and architect resilient and scalable software & database architecture & APIs on the web.|(Senior) Able to review code and software & database architecture, mentor and drive software development best practices.|(Senior) Hands on full stack experience highly preferred.|(Senior) Knowledgeable in Agile & Scrum methodologies.';
+
+  const requirements = [optionOne, optionTwo, optionThree];
+
+  return requirements[Math.floor(Math.random() * requirements.length)];
+};
+
 module.exports = {
   up: async (queryInterface) => {
     const companiesList = [];
@@ -7,7 +41,7 @@ module.exports = {
     for (let i = 0; i < 20; i += 1) {
       companiesList.push({
         name: faker.company.companyName(),
-        description: faker.company.catchPhraseDescriptor(),
+        description: faker.company.catchPhrase(),
         created_at: new Date(),
         updated_at: new Date(),
       });
@@ -105,11 +139,12 @@ module.exports = {
         company_id: jobCompanyIds[i],
         title: jobTitle[i],
         link: 'https://www.facebook.com/careers/jobs/',
-        description: faker.name.jobDescriptor(),
+        description: randomDescription(),
+        requirement: randomRequirement(),
         years_required: randomInt,
         min_salary: salaries[randomInt].minSal,
         max_salary: salaries[randomInt].maxSal,
-        created_at: new Date(),
+        created_at: new Date(2021, randomMonth(), randomDay(), 9, 0, 0, 0),
         closing_at: new Date(),
         updated_at: new Date(),
       });
@@ -137,7 +172,7 @@ module.exports = {
       {
         job_id: 1,
         skill_id: 1,
-        created_at: new Date(),
+        created_at: new Date(2021, 1, 12, 10, 33, 30),
         updated_at: new Date(),
       },
       {

@@ -22,6 +22,9 @@ export default function jobModel(sequelize, DataTypes) {
     description: {
       type: DataTypes.TEXT,
     },
+    requirement: {
+      type: DataTypes.TEXT,
+    },
     yearsRequired: {
       type: DataTypes.INTEGER,
     },
