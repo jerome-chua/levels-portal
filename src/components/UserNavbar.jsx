@@ -2,8 +2,10 @@ import React from 'react';
 
 export default function UserNavbar({ setPageView }) {
   function renderJobSearch() {
-    const signIn = document.getElementById('signin-container');
-    if (signIn) signIn.remove();
+    const userProfile = document.getElementById('profile-container');
+    if (userProfile) userProfile.remove();
+
+    setPageView('JOB_SEARCH');
   }
 
   function renderProfile() {
