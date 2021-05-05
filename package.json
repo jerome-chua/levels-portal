@@ -1,8 +1,8 @@
 {
-  "name": "react-ecom-swe1",
+  "name": "react-levels-portal",
   "version": "1.0.0",
   "description": "",
-  "main": ".eslintrc.js",
+  "main": "index.mjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack_conf/webpack.prod.js",
