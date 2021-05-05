@@ -10,8 +10,6 @@ export default function App() {
   const [status, setStatus] = useState('GUEST');
   const [pageView, setPageView] = useState('JOB_SEARCH');
 
-  console.log(pageView);
-
   return (
     <div>
       {status === 'GUEST'

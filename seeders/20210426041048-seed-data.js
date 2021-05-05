@@ -7,7 +7,7 @@ const randomMonth = () => {
 };
 
 const randomDay = () => {
-  const randomInt = Math.floor(Math.random() * 29) + 1;
+  const randomInt = Math.ceil(Math.random() * 29) + 1;
   return randomInt;
 };
 
