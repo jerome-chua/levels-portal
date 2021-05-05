@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import JobSearch from './components/JobSearch.jsx';
 import UserProfile from './components/UserProfile.jsx';
@@ -26,7 +26,7 @@ export default function App() {
           />
         )}
 
-      {pageView === 'JOB_SEARCH' && <JobSearch />}
+      {pageView === 'JOB_SEARCH' && <JobSearch status={status} />}
       {pageView === 'SIGN_IN' && (
       <SignIn
         setPageView={(newView) => setPageView(newView)}

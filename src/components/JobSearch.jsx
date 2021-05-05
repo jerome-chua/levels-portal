@@ -9,12 +9,13 @@ import FullJobDescription from './FullJobDescription.jsx';
 import UnfilteredJobCards from './UnfilteredJobCards.jsx';
 import FilteredJobCards from './FilteredJobCards.jsx';
 
-export default function JobSearch() {
+export default function JobSearch({ status }) {
   const [jobList, setJobList] = useState([]);
   const [jobSearched, setJobSearched] = useState(false);
   const [jobFiltered, setJobFiltered] = useState(false);
   const [selectedIdx, setSelectedIdx] = useState(0);
   const [jobSkills, setJobSkills] = useState([]);
+  const [savedJobId, setSavedJobId] = useState(null);
 
   const setJobIdx = (jobIdx) => {
     setSelectedIdx(jobIdx);
@@ -29,10 +30,24 @@ export default function JobSearch() {
         .then((res) => {
           const skills = res.data;
           setJobSkills([...skills]);
+          setSavedJobId(chosenJobListing.id);
         })
         .catch((err) => console.log('/jobskills error: ----', err));
     }
   }, [jobSearched, selectedIdx]);
+
+  const saveJob = () => {
+    console.log('job saved.');
+    if (status === 'USER') {
+      axios.post('/savejob', { savedJobId })
+        .then((res) => {
+          console.log(res.data);
+        })
+        .catch((err) => console.log('/savejob error: ----', err));
+    } else if (status === 'GUEST') {
+      console.log('Please sign in');
+    }
+  };
 
   return (
     <div>
@@ -91,6 +106,8 @@ export default function JobSearch() {
                     max={chosenJobListing.maxSalary}
                     jobSkills={jobSkills}
                     createdAt={now.diff(new Date(chosenJobListing.createdAt.split(' ')[0]), 'days')}
+                    saveJob={saveJob}
+                    status={status}
                   />
                 </ErrorBoundary>
               )

@@ -13,6 +13,7 @@ export default function routes(app) {
   app.get('/allskills', JobsController.allSkills);
   app.get('/filterjobs', JobsController.jobsFiltered);
   app.get('/alljobs', JobsController.allJobs);
+  app.post('/savejob', JobsController.saveJob);
 
   app.post('/signin', CandidatesController.signIn);
 

@@ -87,11 +87,24 @@ export default function initJobsController(db) {
     }
   };
 
+  const saveJob = async (req, res) => {
+    const { userId } = req.cookies;
+    const { savedJobId } = req.body;
+
+    try {
+      console.log('test');
+      console.log('Lets check: -----------\n', Number(userId), savedJobId);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return {
     getJobs,
     getSkills,
     allSkills,
     jobsFiltered,
     allJobs,
+    saveJob,
   };
 }

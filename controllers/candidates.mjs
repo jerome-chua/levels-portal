@@ -18,13 +18,14 @@ export default function initCandidatesController(db) {
         },
       });
 
-      console.log('----- CNAANASNNA -----', candidate);
+      console.log('SUCCESS!!', candidate.id);
 
       if (getHash(password) === candidate.password) {
+        res.cookie('userId', candidate.id);
         res.send('SIGNIN_SUCCESS');
-      } else {
-        res.send('SIGNIN_FAILURE');
+        return;
       }
+      res.send('SIGNIN_FAILURE');
     } catch (err) {
       console.log(err);
     }
