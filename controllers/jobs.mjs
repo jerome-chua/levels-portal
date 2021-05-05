@@ -92,8 +92,23 @@ export default function initJobsController(db) {
     const { savedJobId } = req.body;
 
     try {
-      console.log('test');
-      console.log('Lets check: -----------\n', Number(userId), savedJobId);
+      const candidate = await db.Candidate.findOne({
+        where: {
+          id: Number(userId),
+        },
+      });
+
+      const savedJob = await db.Job.findOne({
+        where: {
+          id: savedJobId,
+        },
+      });
+
+      const addSavedJob = await candidate.addJob(savedJob);
+
+      console.log(addSavedJob);
+
+      res.send('test');
     } catch (err) {
       console.log(err);
     }

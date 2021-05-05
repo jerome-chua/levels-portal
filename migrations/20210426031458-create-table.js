@@ -107,7 +107,7 @@ module.exports = {
       },
     });
 
-    await queryInterface.createTable('jobs_applied', {
+    await queryInterface.createTable('jobs_saved', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -193,7 +193,7 @@ module.exports = {
   down: async (queryInterface) => {
     await queryInterface.dropTable('company_jobs');
     await queryInterface.dropTable('jobs_skills');
-    await queryInterface.dropTable('jobs_applied');
+    await queryInterface.dropTable('jobs_saved');
     await queryInterface.dropTable('skills');
     await queryInterface.dropTable('candidates');
     await queryInterface.dropTable('jobs');
