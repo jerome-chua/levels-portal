@@ -16,6 +16,7 @@ export default function routes(app) {
   app.post('/savejob', JobsController.saveJob);
 
   app.post('/signin', CandidatesController.signIn);
+  app.get('/getsavedjobs', CandidatesController.getSavedJobs);
 
   // Main JS page; include the webpack index.html file.
   app.get('/home', (req, res) => {

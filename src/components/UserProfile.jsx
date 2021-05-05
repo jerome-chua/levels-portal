@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 import SavedJobs from './SavedJobs.jsx';
 import AboutMe from './AboutMe.jsx';
 
 export default function UserProfile({ setPageView }) {
   const [toggleView, setToggleView] = useState('ABOUT_ME');
+  const [savedJobs, setSavedJobs] = useState([]);
 
   const toggleAboutMe = () => {
     setToggleView('ABOUT_ME');
@@ -15,6 +17,15 @@ export default function UserProfile({ setPageView }) {
     setToggleView('SAVED_JOBS');
     console.log(toggleView);
   };
+
+  useEffect(() => {
+    axios.get('/getsavedjobs')
+      .then((res) => {
+        console.log('Saved Jobs:\n', res.data);
+        setSavedJobs([...res.data]);
+      })
+      .catch((err) => console.log(err));
+  }, [toggleView]);
 
   return (
     <div>
@@ -34,7 +45,7 @@ export default function UserProfile({ setPageView }) {
         </div>
         <div className="row">
           <div className="col">
-            {toggleView === 'ABOUT_ME' ? <AboutMe /> : <SavedJobs />}
+            {toggleView === 'ABOUT_ME' ? <AboutMe /> : <SavedJobs savedJobs={savedJobs} />}
           </div>
         </div>
         <div className="row my-5">

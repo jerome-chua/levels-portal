@@ -31,7 +31,27 @@ export default function initCandidatesController(db) {
     }
   };
 
+  const getSavedJobs = async (req, res) => {
+    const { userId } = req.cookies;
+
+    try {
+      const candidate = await db.Candidate.findOne({
+        where: {
+          id: Number(userId),
+        },
+      });
+
+      const getjobs = await candidate.getJobs();
+      console.log('getjobs ----', getjobs);
+
+      res.send(getjobs);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return {
     signIn,
+    getSavedJobs,
   };
 }

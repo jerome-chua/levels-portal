@@ -5,6 +5,7 @@ const randomMonth = () => {
   const randomInt = Math.floor(Math.random() * 1);
   return months[randomInt];
 };
+
 const randomDay = () => {
   const randomInt = Math.floor(Math.random() * 29) + 1;
   return randomInt;
@@ -145,7 +146,7 @@ module.exports = {
         min_salary: salaries[randomInt].minSal,
         max_salary: salaries[randomInt].maxSal,
         created_at: new Date(2021, randomMonth(), randomDay(), 9, 0, 0, 0),
-        closing_at: new Date(),
+        closing_at: new Date(2021, 5, randomDay(), 9, 0, 0, 0),
         updated_at: new Date(),
       });
     }

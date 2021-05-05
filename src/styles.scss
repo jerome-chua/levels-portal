@@ -37,6 +37,10 @@ body {
   color: #f1f3f8;
 }
 
+.brand-btn {
+  background-color: #75d3ae;
+}
+
 a:link {
   text-decoration: none;
 }
@@ -109,10 +113,9 @@ a:hover {
 }
 
 #saved-jobs {
-  height: 700px;
   border-radius: 25px;
   background-color: white;
-  border: solid 1px black;
+  box-shadow: 2px 2px 3px rgb(99, 99, 99, 0.2);
 }
 
 #save-job:hover {

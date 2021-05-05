@@ -37,7 +37,6 @@ export default function JobSearch({ status }) {
   }, [jobSearched, selectedIdx]);
 
   const saveJob = () => {
-    console.log('job saved.');
     if (status === 'USER') {
       axios.post('/savejob', { savedJobId })
         .then((res) => {
@@ -45,7 +44,7 @@ export default function JobSearch({ status }) {
         })
         .catch((err) => console.log('/savejob error: ----', err));
     } else if (status === 'GUEST') {
-      console.log('Please sign in');
+      console.log('Status: GUEST');
     }
   };
 
