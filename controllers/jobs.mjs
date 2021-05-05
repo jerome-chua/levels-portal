@@ -106,9 +106,7 @@ export default function initJobsController(db) {
 
       const addSavedJob = await candidate.addJob(savedJob);
 
-      console.log(addSavedJob);
-
-      res.send('test');
+      res.send('JOB_SAVED');
     } catch (err) {
       console.log(err);
     }

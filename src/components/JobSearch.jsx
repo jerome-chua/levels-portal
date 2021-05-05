@@ -16,6 +16,7 @@ export default function JobSearch({ status }) {
   const [selectedIdx, setSelectedIdx] = useState(0);
   const [jobSkills, setJobSkills] = useState([]);
   const [savedJobId, setSavedJobId] = useState(null);
+  const [jobSaved, setJobSaved] = useState(false);
 
   const setJobIdx = (jobIdx) => {
     setSelectedIdx(jobIdx);
@@ -35,6 +36,22 @@ export default function JobSearch({ status }) {
         .catch((err) => console.log('/jobskills error: ----', err));
     }
   }, [jobSearched, selectedIdx]);
+
+  useEffect(() => {
+    if (chosenJobListing) {
+      axios.get('/getsavedjobs')
+        .then((res) => {
+          const savedJobIds = res.data.map((job) => job.id);
+          if (savedJobIds.includes(chosenJobListing.id)) {
+            console.log('DO WE GET HERE?');
+            setJobSaved(true);
+          } else {
+            setJobSaved(false);
+          }
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [selectedIdx]);
 
   const saveJob = () => {
     if (status === 'USER') {
@@ -95,6 +112,7 @@ export default function JobSearch({ status }) {
               ? (
                 <ErrorBoundary>
                   <FullJobDescription
+                    jobId={chosenJobListing.id}
                     title={chosenJobListing.title}
                     companyName={chosenJobListing.company.name}
                     link={chosenJobListing.link}
@@ -107,6 +125,7 @@ export default function JobSearch({ status }) {
                     createdAt={now.diff(new Date(chosenJobListing.createdAt.split(' ')[0]), 'days')}
                     saveJob={saveJob}
                     status={status}
+                    jobSaved={jobSaved}
                   />
                 </ErrorBoundary>
               )

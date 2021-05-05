@@ -18,8 +18,6 @@ export default function initCandidatesController(db) {
         },
       });
 
-      console.log('SUCCESS!!', candidate.id);
-
       if (getHash(password) === candidate.password) {
         res.cookie('userId', candidate.id);
         res.send('SIGNIN_SUCCESS');
@@ -42,7 +40,6 @@ export default function initCandidatesController(db) {
       });
 
       const getjobs = await candidate.getJobs();
-      console.log('getjobs ----', getjobs);
 
       res.send(getjobs);
     } catch (err) {
