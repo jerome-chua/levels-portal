@@ -1,5 +1,7 @@
 import jsSHA from 'jssha';
 
+import pkg from 'sequelize';
+
 const getHash = (userInput) => {
   const shaObj = new jsSHA('SHA-512', 'TEXT', { encoding: 'UTF8' });
   shaObj.update(userInput); // Generate hashed string based on SHA object.
@@ -25,7 +27,7 @@ export default function initCandidatesController(db) {
       }
       res.send('SIGNIN_FAILURE');
     } catch (err) {
-      console.log(err);
+      console.log('signIn err -----\n', err);
     }
   };
 
@@ -43,12 +45,40 @@ export default function initCandidatesController(db) {
 
       res.send(getjobs);
     } catch (err) {
-      console.log(err);
+      console.log('getjobs error: -----\n', err);
+    }
+  };
+
+  const deleteJob = async (req, res) => {
+    try {
+      const { jobId } = req.params;
+      const { userId } = req.cookies;
+
+      const candidate = await db.Candidate.findOne({
+        where: {
+          id: Number(userId),
+        },
+      });
+
+      const candidateJobs = await candidate.getJobs();
+
+      await candidateJobs.destroy({
+        where: {
+          id: Number(jobId),
+        },
+      });
+
+      console.log('destroyed Job', candidateJobs);
+
+      res.send('Deleted job');
+    } catch (err) {
+      console.log('Error : ----\n', err);
     }
   };
 
   return {
     signIn,
     getSavedJobs,
+    deleteJob,
   };
 }

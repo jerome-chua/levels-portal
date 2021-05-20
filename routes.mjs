@@ -17,6 +17,7 @@ export default function routes(app) {
 
   app.post('/signin', CandidatesController.signIn);
   app.get('/getsavedjobs', CandidatesController.getSavedJobs);
+  app.delete('/deletejob/:jobId', CandidatesController.deleteJob);
 
   // Main JS page; include the webpack index.html file.
   app.get('/home', (req, res) => {
